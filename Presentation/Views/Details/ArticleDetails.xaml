@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Presentation.Views.Details.ArticleDetails"
+             xmlns:model="clr-namespace:Domain.DTOs;assembly=Domain"
+             xmlns:viewModel="clr-namespace:Presentation.ViewModels.Details"
+             x:DataType="viewModel:DetailsViewViewModel"
+             Title="ArticleDetails">
+    <VerticalStackLayout HorizontalOptions="Center" MaximumWidthRequest="600">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Command="{Binding Path=MainDisplay}" Text="Gå tillbaka" MaximumHeightRequest="52" VerticalOptions="Start"/>
+
+            <ScrollView Grid.Column="1" Padding="20">
+                <VerticalStackLayout BindingContext="{Binding Article}" x:DataType="model:ArticleDTO">
+
+                    <Image Source="{Binding UrlToImage}" HeightRequest="150" Aspect="Fill" />
+
+                    <Label Text="{Binding Title}"
+                           Margin="0,0,0,24"
+                           FontSize="24"
+                           FontAttributes="Bold"/>
+
+                    <Label Text="{Binding Author}"
+                           HorizontalOptions="Start"
+                           Margin="0,0,0,8"/>
+
+
+
+                    <Label Text="{Binding Content}" Margin="0,0,0,12"/>
+
+                    <Label Text="{Binding PublishedAt}" Margin="0,0,0,12"/>
+                    <Label Text="{Binding URL}" />
+
+                </VerticalStackLayout>
+            </ScrollView>
+
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

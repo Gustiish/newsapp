@@ -1,5 +1,10 @@
 <Solution>
+  <Folder Name="/Webservice/">
+    <Project Path="Webservice/webservice.csproj" />
+  </Folder>
+  <Project Path="ApplicationLayer/ApplicationLayer.csproj" />
   <Project Path="Domain/Domain.csproj" />
-  <Project Path="Infrastructure/Infrastructure.csproj" />
-  <Project Path="Presentation/Presentation.csproj" />
+  <Project Path="Presentation/Presentation.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
 </Solution>

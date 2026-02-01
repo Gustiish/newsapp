@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Presentation.Views.Filters.ApplyFilter"
+             xmlns:viewmodel="clr-namespace:Presentation.ViewModels.Filter"
+             >
+    <VerticalStackLayout x:DataType="viewmodel:ApplyFilterViewModel" MaximumWidthRequest="600"
+                         Spacing="10">
+        <Entry 
+            Placeholder="Skriv sökord, ex: business, tech"
+            Text="{Binding Q}"
+            />
+
+        <Entry
+            Placeholder="Skriv vilken domain du vill söka i t.ex. bbc.com, svt.se etc. seperera med comma"
+            Text="{Binding DomainEntry}"/>
+
+
+        <Picker ItemsSource="{Binding searchinOptions}"
+                SelectedItem="{Binding SelectedSearchIn}"
+                Title="Search in"/>
+
+        <Picker ItemsSource="{Binding sortbyOptions}"
+                SelectedItem="{Binding SelectedSortBy}"
+                Title="Sort by"/>
+
+        <Picker ItemsSource="{Binding langOptions}"
+                SelectedItem="{Binding SelectedLanguage}"
+                Title="Language"/>
+
+        <HorizontalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="Från vilket datum?"/>
+                <DatePicker
+                Date="{Binding From}"/>
+            </VerticalStackLayout>
+            <VerticalStackLayout>
+                <Label Text="Till vilket datum?"/>
+                <DatePicker
+                Date="{Binding To}"/>
+    </VerticalStackLayout>
+    </HorizontalStackLayout>
+
+
+
+    <Button Command="{Binding Path=UpdateFilter}" Text="Lägg till filter" MaximumWidthRequest="200" HorizontalOptions="Center"
+                />
+
+
+    </VerticalStackLayout>
+</ContentPage>

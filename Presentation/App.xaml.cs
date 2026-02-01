@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Presentation.ViewModels.Filter;
 
 namespace Presentation;
 
@@ -13,4 +14,6 @@ public partial class App : Application
 	{
 		return new Window(new AppShell());
 	}
+
+ 
 }

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Presentation.Views.MainDisplay.MainDisplay"
+             xmlns:model="clr-namespace:Domain.DTOs;assembly=Domain"
+             xmlns:vm="clr-namespace:Presentation.ViewModels.MainDisplay"
+             Title="MainDisplay"
+            
+             >
+
+
+
+
+    <Grid HorizontalOptions="Center" MaximumWidthRequest="600" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <CollectionView ItemsSource="{Binding Articles}"
+                        SelectionMode="None"                     
+                        Grid.Row="0">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:ArticleDTO">
+                    <Border StrokeThickness="0">
+                        <Grid RowSpacing="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Label Text="{Binding Title}" FontAttributes="Bold" Margin="0,0,0,12" FontSize="16" Grid.Row="0"/>
+                            <Label Text="{Binding Author}" FontSize="12" Margin="0,0,0,8" Grid.Row="1"/>
+                            <Label Text="{Binding Description}" Grid.Row="2"/>
+                            <Label Text="{Binding URL}" Grid.Row="3"/>
+
+                            <Label Text="{Binding PublishedAt}" Grid.Row="4"/>
+
+                            <Button Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainDisplayViewModel}}, Path=GetDetails}" 
+                                    Text="Read Article" Padding="8" HorizontalOptions="Start"
+                                    CommandParameter="{Binding .}"
+                                    Grid.Row="5"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+
+            <CollectionView.EmptyView>
+                <Label Text="Inga artiklar!" HorizontalOptions="Center" VerticalOptions="Center" />
+            </CollectionView.EmptyView>
+
+            
+
+        </CollectionView>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" 
+                    Text="Nästa sida"
+                    Command="{Binding Path=GetNextPage}" 
+                    Margin="16"
+                    WidthRequest="124"
+                    Padding="8"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+
+            <Button Grid.Column="0" 
+                   Text="Föregående sida"
+                   Command="{Binding Path=GetPreviousPage}" 
+                   Margin="16"
+                   WidthRequest="124"
+                   Padding="8"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </Grid>
+
+    </Grid>
+
+</ContentPage>
+    
